@@ -6,7 +6,7 @@ import com.backend.cargallery.model.Car;
 
 
 public interface CarServices {
-	Car saveCar(Car car);
+	Car createCar(Car car);
 	List<Car> findAllCar();
 	Car findByIdCar(Long id);
 	Car updateCar(Car car , Long id);

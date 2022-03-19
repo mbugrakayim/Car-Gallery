@@ -32,7 +32,7 @@ public class CarController {
 	}
 	@PostMapping()
 	public ResponseEntity<Car> saveCar(@RequestBody Car car){
-		return new ResponseEntity<Car>(carServices.saveCar(car) , HttpStatus.CREATED);
+		return new ResponseEntity<Car>(carServices.createCar(car) , HttpStatus.CREATED);
 	}
 	
 	@GetMapping

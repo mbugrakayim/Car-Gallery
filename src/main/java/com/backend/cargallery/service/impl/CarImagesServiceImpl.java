@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.backend.cargallery.dao.CarImagesRepository;
 import com.backend.cargallery.dao.CarRepository;
 import com.backend.cargallery.exception.NotFoundException;
+import com.backend.cargallery.model.Car;
 import com.backend.cargallery.model.CarImages;
 
 
@@ -21,7 +22,7 @@ import com.backend.cargallery.model.CarImages;
 @Service
 public class CarImagesServiceImpl{
 	@Autowired
-	CarImagesRepository carImagesRepository;
+	private CarImagesRepository carImagesRepository;
 	@Autowired
 	CarRepository carRepository;
 	
@@ -30,11 +31,10 @@ public class CarImagesServiceImpl{
 	    CarImages carImages = new CarImages(fileName, file.getContentType(), file.getBytes());
 	    return carImagesRepository.save(carImages);
 	  }
-	public CarImages update(String id, MultipartFile file) throws IOException {
-		CarImages images = carImagesRepository.findById(id).orElseThrow(()-> new NotFoundException("Customer not found with id: " +id));
-		images.setName(StringUtils.cleanPath(file.getOriginalFilename()));
-		images.setType(file.getContentType());
-		images.setImages(file.getBytes());
+	public CarImages update(String imageId , Long carId) throws IOException {
+		CarImages images = carImagesRepository.findById(imageId).orElseThrow(()-> new NotFoundException("Car images not found with id: " +imageId));
+		Car car = carRepository.findById(carId).orElseThrow(()-> new NotFoundException("Car not found with id: " +carId));
+		images.setCarId(car);
 		return carImagesRepository.save(images);
 	}
 	  public CarImages getFile(String id) {
@@ -43,5 +43,4 @@ public class CarImagesServiceImpl{
 	  public Stream<CarImages> getAllFiles() {
 	    return carImagesRepository.findAll().stream();
 	  }
-	
 }

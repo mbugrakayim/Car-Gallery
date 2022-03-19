@@ -13,14 +13,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-
-
 @Entity
 @Table(name = "T_CAR_IMAGES")
 public class CarImages {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "IMAGES_ID")
 	private String id;
 	private String name;
 	private String type;
@@ -28,18 +26,16 @@ public class CarImages {
 	@Lob
 	@Column(name = "IMAGES")
 	private byte[] images;
+	
 	@ManyToOne
-	@JoinColumn(name = "CAR_ID",referencedColumnName = "id")
+	@JoinColumn(name = "CAR_ID", referencedColumnName = "id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Car carId;
-	
-	
 
 	public CarImages() {
 		super();
 	}
 
-	
 	public CarImages(String name, String type, byte[] images) {
 		super();
 		this.name = name;
@@ -47,23 +43,17 @@ public class CarImages {
 		this.images = images;
 	}
 
-
-
 	public String getId() {
 		return id;
 	}
-
-	
 
 	public Car getCarId() {
 		return carId;
 	}
 
-
 	public void setCarId(Car carId) {
 		this.carId = carId;
 	}
-
 
 	public byte[] getImages() {
 		return images;
@@ -88,6 +78,5 @@ public class CarImages {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
 
 }

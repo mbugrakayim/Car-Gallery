@@ -1,7 +1,5 @@
 package com.backend.cargallery.model;
 
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,30 +15,37 @@ public class Car {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
-	
+
 	@Column(name = "PRICE")
 	private Long price;
+	
 	@Column(name = "BRAND")
 	private String brand;
+	
 	@Column(name = "MODEL")
 	private String model;
+	
 	@Column(name = "PLAKA")
 	private String plaka;
+	
 	@Column(name = "FUEL_TYPE")
 	private String fuelType;
+	
 	@Column(name = "GEARBOX")
 	private String gearBox;
+	
 	@Column(name = "BODY_TYPE")
 	private String bodyType;
+	
 	@Column(name = "DESCRIPTION")
 	private String description;
-	
+
 	public Car() {
 		super();
 	}
 
-	public Car(Long price, String brand, String model, String plaka, String fuelType, String gearBox,
-			String bodyType, String description) {
+	public Car(Long price, String brand, String model, String plaka, String fuelType, String gearBox, String bodyType,
+			String description) {
 		super();
 		this.price = price;
 		this.brand = brand;
@@ -123,10 +128,5 @@ public class Car {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
-	
-	
-	
+
 }

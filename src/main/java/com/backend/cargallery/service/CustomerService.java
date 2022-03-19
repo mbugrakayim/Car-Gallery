@@ -6,7 +6,7 @@ import com.backend.cargallery.model.Customer;
 
 public interface CustomerService {
 
-	Customer saveCustomer(Customer customer);
+	Customer createCustomer(Customer customer);
 	List<Customer> findAllCustomers();
 	Customer findByIdCustomer(Long id);
 	Customer updateCustomer(Customer customer , Long id);

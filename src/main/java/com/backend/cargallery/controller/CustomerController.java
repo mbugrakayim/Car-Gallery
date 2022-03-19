@@ -37,9 +37,9 @@ public class CustomerController {
 		this.customerService = customerService;
 	}
 	
-	@PostMapping()
+	@PostMapping("/create")
 	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer){
-		return new ResponseEntity<Customer>(customerService.saveCustomer(customer) , HttpStatus.CREATED);
+		return new ResponseEntity<Customer>(customerService.createCustomer(customer) , HttpStatus.CREATED);
 	}
 	
 	@GetMapping

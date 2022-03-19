@@ -20,7 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer saveCustomer(Customer customer) {
+	public Customer createCustomer(Customer customer) {
 		return customerRepository.save(customer);
 	}
 
@@ -46,7 +46,6 @@ public class CustomerServiceImpl implements CustomerService {
 		customer1.setDrivingLicence(customer.getDrivingLicence());
 		customer1.setPhoneNo(customer.getPhoneNo());
 		customer1.setTcNo(customer.getPhoneNo());
-		customer1.setPassword(customer.getPassword());
 		customerRepository.save(customer1);
 		return customer1;
 	}

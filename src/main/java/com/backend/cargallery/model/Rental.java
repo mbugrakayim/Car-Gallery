@@ -20,23 +20,30 @@ public class Rental {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
+
 	@OneToOne
-	@JoinColumn(name = "CAR_ID",referencedColumnName = "id")
+	@JoinColumn(name = "CAR_ID", referencedColumnName = "id")
 	private Car carId;
+
 	@OneToOne
-	@JoinColumn(name = "CUSTOMER_ID",referencedColumnName = "id")
+	@JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "id")
 	private Customer customerId;
+
 	@OneToOne
-	@JoinColumn(name = "EMPLOYEE_ID",referencedColumnName = "id")
+	@JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "id")
 	private Employee employeeId;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "RENT_DATE")
 	private Date rentDate;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "RETURN_DATE")
 	private Date returnDate;
+
 	@Column(name = "PRICE")
 	private Long price;
+
 	@Column(name = "DESCRIPTION")
 	private String description;
 
@@ -44,10 +51,9 @@ public class Rental {
 		super();
 	}
 
-	public Rental(Long id, Car carId, Customer customerId, Employee employeeId, Date rentDate, Date returnDate,
-			Long price, String description) {
+	public Rental(Car carId, Customer customerId, Employee employeeId, Date rentDate, Date returnDate, Long price,
+			String description) {
 		super();
-		this.id = id;
 		this.carId = carId;
 		this.customerId = customerId;
 		this.employeeId = employeeId;
@@ -127,7 +133,5 @@ public class Rental {
 				+ ", rentDate=" + rentDate + ", returnDate=" + returnDate + ", price=" + price + ", description="
 				+ description + "]";
 	}
-	
-	
 
 }

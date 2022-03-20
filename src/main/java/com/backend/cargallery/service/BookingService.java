@@ -5,7 +5,8 @@ import java.util.List;
 import com.backend.cargallery.model.Booking;
 
 public interface BookingService {
-	Booking saveBooking(Booking booking);
+	
+	Booking createBooking(Booking booking);
 
 	List<Booking> findAllBookings();
 

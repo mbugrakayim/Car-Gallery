@@ -6,7 +6,7 @@ import com.backend.cargallery.model.CarStatus;
 
 
 public interface CarStatusService {
-	CarStatus saveStatus(CarStatus carStatus);
+	CarStatus createStatus(CarStatus carStatus);
 	List<CarStatus> findAllStatus();
 	CarStatus findByIdStatus(Long id);
 	CarStatus updateStatu(CarStatus carStatus , Long id);

@@ -22,7 +22,7 @@ public class RentalServiceImpl implements RentalService {
 
 
 	@Override
-	public Rental saveRental(Rental rental) {
+	public Rental createRental(Rental rental) {
 		return rentalRepository.save(rental);
 	}
 

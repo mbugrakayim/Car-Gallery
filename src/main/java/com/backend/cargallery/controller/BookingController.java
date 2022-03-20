@@ -31,9 +31,9 @@ public class BookingController {
 		super();
 		this.bookingService = bookingService;
 	}
-	@PostMapping()
+	@PostMapping("/create")
 	public ResponseEntity<Booking> saveBooking(@RequestBody Booking booking){
-		return new ResponseEntity<Booking>(bookingService.saveBooking(booking) , HttpStatus.CREATED);
+		return new ResponseEntity<Booking>(bookingService.createBooking(booking) , HttpStatus.CREATED);
 	}
 	
 	@GetMapping

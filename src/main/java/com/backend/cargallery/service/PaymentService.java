@@ -6,7 +6,7 @@ import com.backend.cargallery.model.Payment;
 
 
 public interface PaymentService {
-	Payment savePayment(Payment payment);
+	Payment createPayment(Payment payment);
 	List<Payment> findAllPayment();
 	Payment findByIdPayment(Long id);
 	Payment updatePayment(Payment payment , Long id);

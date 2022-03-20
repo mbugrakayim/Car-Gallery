@@ -20,7 +20,7 @@ public class CarStatusServiceImpl implements CarStatusService{
 
 
 	@Override
-	public CarStatus saveStatus(CarStatus carStatus) {		
+	public CarStatus createStatus(CarStatus carStatus) {		
 		return carStatusRepository.save(carStatus);
 	}
 

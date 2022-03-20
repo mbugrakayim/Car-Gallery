@@ -30,9 +30,10 @@ public class PaymentController {
 		super();
 		this.paymentService = paymentService;
 	}
-	@PostMapping()
-	public ResponseEntity<Payment> savePayment(@RequestBody Payment payment){
-		return new ResponseEntity<Payment>(paymentService.savePayment(payment) , HttpStatus.CREATED);
+	
+	@PostMapping("/create")
+	public ResponseEntity<Payment> createPayment(@RequestBody Payment payment){
+		return new ResponseEntity<Payment>(paymentService.createPayment(payment) , HttpStatus.CREATED);
 	}
 	
 	@GetMapping
@@ -45,10 +46,12 @@ public class PaymentController {
 	public ResponseEntity<Payment> findByIdPayment(@PathVariable("id") Long id){
 		return new ResponseEntity<Payment>(paymentService.findByIdPayment(id),HttpStatus.OK);
 	}
+	
 	@PutMapping("{id}")
-	public ResponseEntity<Payment> updateUpdate(@PathVariable("id") Long id , @RequestBody Payment payment){
+	public ResponseEntity<Payment> updatePayment(@PathVariable("id") Long id , @RequestBody Payment payment){
 		return new ResponseEntity<Payment>(paymentService.updatePayment(payment, id) , HttpStatus.OK);
 	}
+	
 	@DeleteMapping("{id}")
 	public ResponseEntity<String> deletePayment(@PathVariable("id") Long id){
 		paymentService.deletePayment(id);

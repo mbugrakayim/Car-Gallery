@@ -6,7 +6,7 @@ import com.backend.cargallery.model.Rental;
 
 
 public interface RentalService {
-	Rental saveRental(Rental rental);
+	Rental createRental(Rental rental);
 	List<Rental> findAllRental();
 	Rental findByIdRental(Long id);
 	Rental updateRental(Rental rental , Long id);

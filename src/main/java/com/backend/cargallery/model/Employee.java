@@ -15,18 +15,25 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
+	
 	@Column(name = "FIRST_NAME")
 	private String firstName;
+	
 	@Column(name ="LAST_NAME")
 	private String lastName;
+	
 	@Column(name = "SALARY")
 	private Long salary;
+	
 	@Column(name = "PRIZE")
 	private Long prize;
+	
 	@Column(name =  "PHONE_NO")
 	private Long phoneNo;
+	
 	@Column(name = "ADDRESS")
 	private String address;
+	
 	@Lob
 	@Column(name = "IMAGES")
 	private byte[] images;

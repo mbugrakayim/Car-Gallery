@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 @Entity
 @Table(name = "T_CAR_STATUS")
 public class CarStatus {
@@ -19,26 +20,28 @@ public class CarStatus {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long statusId;
+	
 	@OneToOne
-	@JoinColumn(name = "CAR_ID" , referencedColumnName = "id")
+	@JoinColumn(name = "CAR_ID", referencedColumnName = "id")
 	private Car carId;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "START_DATE")
 	private Date startDate;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "END_DATE")
 	private Date endDate;
+	
 	@Column(name = "STATUS")
 	private String status;
-	
-	
+
 	public CarStatus() {
 		super();
 	}
 
-	public CarStatus(Long statusId, Car carId, Date startDate, Date endDate, String status) {
+	public CarStatus(Car carId, Date startDate, Date endDate, String status) {
 		super();
-		this.statusId = statusId;
 		this.carId = carId;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -90,7 +93,5 @@ public class CarStatus {
 		return "CarStatus [statusId=" + statusId + ", carId=" + carId + ", startDate=" + startDate + ", endDate="
 				+ endDate + ", status=" + status + "]";
 	}
-	
-	
-	
+
 }

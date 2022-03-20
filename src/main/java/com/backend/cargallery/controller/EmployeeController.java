@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,7 +36,7 @@ public class EmployeeController {
 	
 	
 	@PostMapping("/register")
-	public  ResponseEntity<MessageResponse> saveCustomer(@RequestBody Employee employee ,@RequestParam("file") MultipartFile file){
+	public  ResponseEntity<MessageResponse> saveCustomer(@ModelAttribute("employee") Employee employee ,@RequestParam("file") MultipartFile file){
 		String message = "";
 		try {
 			employeeService.saveEmployee(employee , file);
@@ -58,7 +59,7 @@ public class EmployeeController {
 		return new ResponseEntity<Employee>(employeeService.findByIdEmployee(id),HttpStatus.OK);
 	}
 	@PutMapping("{id}")
-	public @ResponseBody ResponseEntity<MessageResponse> updateEmployee(@PathVariable("id") Long id , Employee employee ,@RequestParam("file") MultipartFile file){
+	public ResponseEntity<MessageResponse> updateEmployee(@PathVariable("id") Long id ,@ModelAttribute Employee employee ,@RequestParam("file") MultipartFile file){
 		
 		String message = "";
 		try {

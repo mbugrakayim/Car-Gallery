@@ -31,9 +31,9 @@ public class RentalController {
 		super();
 		this.rentalService = rentalService;
 	}
-	@PostMapping()
-	public ResponseEntity<Rental> saveRental(@RequestBody Rental rental){
-		return new ResponseEntity<Rental>(rentalService.saveRental(rental) , HttpStatus.CREATED);
+	@PostMapping("/create")
+	public ResponseEntity<Rental> createRental(@RequestBody Rental rental){
+		return new ResponseEntity<Rental>(rentalService.createRental(rental) , HttpStatus.CREATED);
 	}
 	
 	@GetMapping

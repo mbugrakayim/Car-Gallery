@@ -22,7 +22,7 @@ public class BookingServiceImpl implements BookingService {
 
 
 	@Override
-	public Booking saveBooking(Booking booking) {
+	public Booking createBooking(Booking booking) {
 		return bookingRepository.save(booking);
 	}
 

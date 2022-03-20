@@ -19,33 +19,39 @@ public class Booking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@OneToOne
 	@JoinColumn(name = "EMPLOYEE_ID",referencedColumnName = "id")
 	private Employee employeeId;
+	
 	@OneToOne
 	@JoinColumn(name = "CAR_ID",referencedColumnName = "id")
 	private Car carId;
+	
 	@OneToOne
 	@JoinColumn(name = "CUSTOMER_ID",referencedColumnName = "id")
 	private Customer customerId;
+	
 	@Column(name = "PRICE")
 	private Long price;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "RENT_DATE")
 	private Date rentDate;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "RETURN_DATE")
 	private Date returnDate;
+	
 	@Column(name = "DESCRIPTION")
 	private String description;
 	
 	public Booking() {
 		super();
 	}
-	public Booking(Long id, Employee employeeId, Car carId, Customer customerId, Long price, Date rentDate,
+	public Booking(Employee employeeId, Car carId, Customer customerId, Long price, Date rentDate,
 			Date returnDate, String description) {
 		super();
-		this.id = id;
 		this.employeeId = employeeId;
 		this.carId = carId;
 		this.customerId = customerId;

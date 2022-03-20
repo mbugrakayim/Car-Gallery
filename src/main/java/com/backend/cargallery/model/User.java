@@ -28,9 +28,6 @@ public class User {
 	@Column(name = "EMAIL")
 	private String email;
 	
-	//@OneToOne
-	//@JoinColumn(name = "EMPLOYE_ID", referencedColumnName = "id")
-	//private Employee employeId;
 	@Column(name = "PASSWORD")
 	private String password;
 	
@@ -52,7 +49,6 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		//this.employeId = employeId;
 		this.password = password;
 	}
 

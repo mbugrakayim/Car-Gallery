@@ -14,15 +14,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-
 import com.backend.cargallery.model.User;
+import com.backend.cargallery.payload.Singup;
 import com.backend.cargallery.service.UserService;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
+	
+	
 	
 	private UserService userService;
 
@@ -31,9 +32,9 @@ public class UserController {
 		super();
 		this.userService = userService;
 	}
-	@PostMapping()
-	public ResponseEntity<User> saveUser(@RequestBody User user){
-		return new ResponseEntity<User>(userService.saveUser(user) , HttpStatus.CREATED);
+	@PostMapping("/create")
+	public ResponseEntity<User> saveUser(@RequestBody Singup user){
+		return new ResponseEntity<User>(userService.createUser(user) , HttpStatus.CREATED);
 	}
 	
 	@GetMapping
@@ -47,7 +48,7 @@ public class UserController {
 		return new ResponseEntity<User>(userService.findByIdUser(id),HttpStatus.OK);
 	}
 	@PutMapping("{id}")
-	public ResponseEntity<User> updateUser(@PathVariable("id") Long id , @RequestBody User user){
+	public ResponseEntity<User> updateUser(@PathVariable("id") Long id , @RequestBody Singup user){
 		return new ResponseEntity<User>(userService.updateUser(user, id) , HttpStatus.OK);
 	}
 	@DeleteMapping("{id}")

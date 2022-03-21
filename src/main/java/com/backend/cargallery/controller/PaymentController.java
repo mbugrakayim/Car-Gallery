@@ -47,10 +47,12 @@ public class PaymentController {
 		return new ResponseEntity<Payment>(paymentService.findByIdPayment(id),HttpStatus.OK);
 	}
 	
+	
 	@PutMapping("{id}")
 	public ResponseEntity<Payment> updatePayment(@PathVariable("id") Long id , @RequestBody Payment payment){
 		return new ResponseEntity<Payment>(paymentService.updatePayment(payment, id) , HttpStatus.OK);
 	}
+	
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<String> deletePayment(@PathVariable("id") Long id){

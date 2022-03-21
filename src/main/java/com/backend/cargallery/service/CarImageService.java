@@ -1,12 +1,15 @@
 package com.backend.cargallery.service;
-import java.nio.file.Path;
-import java.util.stream.Stream;
-import org.springframework.core.io.Resource;
+import java.io.IOException;
+import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.backend.cargallery.model.Car;
+import com.backend.cargallery.model.CarImages;
+
 public interface CarImageService {
-	 public void init();
-	  public void save(MultipartFile file);
-	  public Resource load(String filename);
-	  public void deleteAll();
-	  public Stream<Path> loadAll();
+	CarImages createCarImage(Car carId , MultipartFile file) throws IOException;
+	List<CarImages> findAllCarImages();
+	CarImages findByIdCarImage(Long id);
+	CarImages updateCarImages(Long id , MultipartFile file)throws IOException;
+	void deleteCarImage(Long id);
 }

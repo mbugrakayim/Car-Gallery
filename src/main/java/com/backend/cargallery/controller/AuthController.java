@@ -1,14 +1,15 @@
 package com.backend.cargallery.controller;
 
 import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.cargallery.dao.RoleRepository;
-import com.backend.cargallery.dao.UserRepository;
 import com.backend.cargallery.model.Role;
 import com.backend.cargallery.model.URole;
 import com.backend.cargallery.model.User;
@@ -31,7 +31,7 @@ import com.backend.cargallery.payload.MessageResponse;
 import com.backend.cargallery.payload.Singup;
 import com.backend.cargallery.security.JwtUtils;
 import com.backend.cargallery.security.UserDetailsImpl;
-
+import com.backend.cargallery.service.impl.UserServiceImpl;
 
 @CrossOrigin("*")
 @RestController
@@ -39,15 +39,17 @@ import com.backend.cargallery.security.UserDetailsImpl;
 public class AuthController {
 
 	@Autowired
-	AuthenticationManager authenticationManager;
+	private AuthenticationManager authenticationManager;
+	
 	@Autowired
-	UserRepository userRepository;
+	private UserServiceImpl userServiceImpl;
+	
 	@Autowired
-	RoleRepository roleRepository;
+	private RoleRepository roleRepository;
 	@Autowired
-	PasswordEncoder encoder;
+	private PasswordEncoder encoder;
 	@Autowired
-	JwtUtils jwtUtils;
+	private JwtUtils jwtUtils;
 
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@RequestBody Login loginRequest) {
@@ -65,14 +67,14 @@ public class AuthController {
 
 	@PostMapping("/register")
 	public ResponseEntity<?> registerUser(@RequestBody Singup singUp) {
-		if (userRepository.existsByUsername(singUp.getUsername())) {
+		if (userServiceImpl.existsByUsername(singUp.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
 		}
-		if (userRepository.existsByEmail(singUp.getEmail())) {
+		if (userServiceImpl.existsByEmail(singUp.getEmail())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
 		}
 		User user = new User(singUp.getUsername(), singUp.getFirstName(), singUp.getLastName(), singUp.getEmail(),
-				 encoder.encode(singUp.getPassword()));
+				encoder.encode(singUp.getPassword()));
 
 		Set<String> strRoles = singUp.getRole();
 		Set<Role> roles = new HashSet<Role>();
@@ -101,8 +103,15 @@ public class AuthController {
 			});
 		}
 		user.setRoles(roles);
-		userRepository.save(user);
+		userServiceImpl.saveUser(user);
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+	}
+
+	@PostMapping("/logout")
+	public ResponseEntity<?> logoutUser() {
+		ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
+		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
+				.body(new MessageResponse("You've been signed out!"));
 	}
 
 }

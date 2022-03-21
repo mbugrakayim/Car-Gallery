@@ -30,6 +30,7 @@ public class CarStatusController {
 		super();
 		this.carStatusService = carStatusService;
 	}
+	
 	@PostMapping("/create")
 	public ResponseEntity<CarStatus> saveStatus(@RequestBody CarStatus status){
 		return new ResponseEntity<CarStatus>(carStatusService.createStatus(status) , HttpStatus.CREATED);

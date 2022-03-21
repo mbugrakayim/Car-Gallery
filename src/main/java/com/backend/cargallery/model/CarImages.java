@@ -18,9 +18,11 @@ import org.hibernate.annotations.OnDeleteAction;
 public class CarImages {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IMAGES_ID")
-	private String id;
+	@Column(name = "ID")
+	private Long id;
+	
 	private String name;
+	
 	private String type;
 
 	@Lob
@@ -36,14 +38,18 @@ public class CarImages {
 		super();
 	}
 
-	public CarImages(String name, String type, byte[] images) {
+	
+	public CarImages(String name, String type, byte[] images, Car carId) {
 		super();
 		this.name = name;
 		this.type = type;
 		this.images = images;
+		this.carId = carId;
 	}
 
-	public String getId() {
+
+
+	public Long getId() {
 		return id;
 	}
 

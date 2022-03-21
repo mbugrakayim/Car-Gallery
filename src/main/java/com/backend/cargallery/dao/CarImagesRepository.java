@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.backend.cargallery.model.CarImages;
 @Repository
-public interface CarImagesRepository extends JpaRepository<CarImages, String> {
+public interface CarImagesRepository extends JpaRepository<CarImages, Long> {
 
 
 	

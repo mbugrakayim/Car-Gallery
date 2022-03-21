@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,11 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,8 +45,8 @@ public class EmployeeController {
 	}
 	
 	@GetMapping
-	public List<Employee> findAllEmployees(){
-		return employeeService.findAllEmployee();
+	public ResponseEntity<List<Employee>>  findAllEmployees(){
+		return new ResponseEntity<List<Employee>>(employeeService.findAllEmployee() , HttpStatus.OK);
 	}
 
 
@@ -59,7 +55,7 @@ public class EmployeeController {
 		return new ResponseEntity<Employee>(employeeService.findByIdEmployee(id),HttpStatus.OK);
 	}
 	@PutMapping("{id}")
-	public ResponseEntity<MessageResponse> updateEmployee(@PathVariable("id") Long id ,@ModelAttribute Employee employee ,@RequestParam("file") MultipartFile file){
+	public ResponseEntity<MessageResponse> updateEmployee(@PathVariable("id") Long id ,@ModelAttribute("employee") Employee employee ,@RequestParam("file") MultipartFile file){
 		
 		String message = "";
 		try {

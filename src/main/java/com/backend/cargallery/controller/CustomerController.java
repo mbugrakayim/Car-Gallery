@@ -52,10 +52,12 @@ public class CustomerController {
 	public ResponseEntity<Customer> findByIdCustomer(@PathVariable("id") Long id){
 		return new ResponseEntity<Customer>(customerService.findByIdCustomer(id),HttpStatus.OK);
 	}
+	
 	@PutMapping("{id}")
 	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") Long id , @RequestBody Customer customer){
 		return new ResponseEntity<Customer>(customerService.updateCustomer(customer, id) , HttpStatus.OK);
 	}
+	
 	@DeleteMapping("{id}")
 	public ResponseEntity<String> deleteCustomer(@PathVariable("id") Long id){
 		customerService.deleteCustomer(id);

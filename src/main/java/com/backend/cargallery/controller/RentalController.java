@@ -31,6 +31,7 @@ public class RentalController {
 		super();
 		this.rentalService = rentalService;
 	}
+	
 	@PostMapping("/create")
 	public ResponseEntity<Rental> createRental(@RequestBody Rental rental){
 		return new ResponseEntity<Rental>(rentalService.createRental(rental) , HttpStatus.CREATED);
@@ -46,10 +47,12 @@ public class RentalController {
 	public ResponseEntity<Rental> findByIdRental(@PathVariable("id") Long id){
 		return new ResponseEntity<Rental>(rentalService.findByIdRental(id),HttpStatus.OK);
 	}
+	
 	@PutMapping("{id}")
 	public ResponseEntity<Rental> updateRental(@PathVariable("id") Long id , @RequestBody Rental rental){
 		return new ResponseEntity<Rental>(rentalService.updateRental(rental, id) , HttpStatus.OK);
 	}
+	
 	@DeleteMapping("{id}")
 	public ResponseEntity<String> deleteRental(@PathVariable("id") Long id){
 		rentalService.deleteRental(id);

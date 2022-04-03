@@ -34,6 +34,12 @@ public class Employee {
 	@Column(name = "ADDRESS")
 	private String address;
 	
+	@Column(name = "EMAIL")
+	private String email;
+	
+	@Column(name = "TITLE")
+	private String title;
+	
 	@Lob
 	@Column(name = "IMAGES")
 	private byte[] images;
@@ -43,14 +49,16 @@ public class Employee {
 	}
 
 
-	public Employee(String firstName, String lastName, Long salary, Long prize, Long phoneNo, String address,
+	public Employee(String firstName, String lastName, Long salary, Long prize, Long phoneNo, String address, String email, String title,
 			byte[] images) {
 		super();
 		this.firstName = firstName;
+		this.title = title;
 		this.lastName = lastName;
 		this.salary = salary;
 		this.prize = prize;
 		this.phoneNo = phoneNo;
+		this.email = email;
 		this.address = address;
 		this.images = images;
 	}
@@ -114,6 +122,29 @@ public class Employee {
 	public Long getId() {
 		return id;
 	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	
+	
 
 	
 

@@ -7,11 +7,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.backend.cargallery.model.Employee;
 
-
 public interface EmployeeService {
-	Employee saveEmployee(Employee employee , MultipartFile file) throws IOException;
+
 	List<Employee> findAllEmployee();
+
 	Employee findByIdEmployee(Long id);
-	Employee updateEmployee(MultipartFile file,Employee employee , Long id)throws IOException;
+
+	Employee updateEmployee(Long id, Employee employee);
+
 	void deleteEmployee(Long id);
+
+	Employee createEmployee(Employee employee);
+
+	Employee upImageEmployee(Long id, MultipartFile file) throws IOException;
+
 }
